@@ -1,0 +1,42 @@
+Buildathon/
+├── .gitignore - Git ignore file.
+├── data/ - Directory for storing data (audio samples, etc.).
+├── venv/ - Python virtual environment.
+└── voice-ai-detector/ - Main project directory for Voice AI Detector.
+    ├── Dockerfile - Docker configuration for the API.
+    ├── README.md - Project documentation and setup instructions.
+    ├── explain.txt - This file, explaining the project structure.
+    ├── requirements.txt - Python dependencies.
+    ├── app/ - Source code for the FastAPI application.
+    │   ├── __init__.py
+    │   ├── main.py - Entry point for the FastAPI application.
+    │   ├── schemas.py - Pydantic schemas for data validation.
+    │   ├── models/ - CNN model architecture and weights relative code.
+    │   │   ├── __init__.py
+    │   │   └── cnn_model.py - Implementation of the CNN model.
+    │   ├── security/ - Security-related utilities (API keys, etc.).
+    │   │   ├── __init__.py
+    │   │   └── api_key.py - API key authentication logic.
+    │   └── services/ - Core business logic and audio processing.
+    │       ├── __init__.py
+    │       ├── audio_utils.py - Utilities for audio file handling and signal processing.
+    │       ├── feature_extractor.py - Mel-spectrogram feature extraction logic.
+    │       └── inference.py - Model inference and detection logic.
+    └── tests/ - Unit and integration tests.
+        ├── __init__.py
+        └── test_api.py - API endpoint tests.
+
+Project Functionality:
+1. Audio Decoding: The API receives base64 encoded MP3 audio, which is decoded into a waveform using librosa.
+2. Feature Extraction: MFCC (Mel-frequency cepstral coefficients) are extracted from the audio waveform.
+3. Inference: A feature-based (not hard-coded) classification is performed based on the variance of the MFCC features.
+   - Low variance (< 50) is classified as AI_GENERATED.
+   - Higher variance is classified as HUMAN.
+4. Security: The API is protected by an `x-api-key` header requiring the secret key `sk_test_123456789`.
+
+Dataset Structure:
+The `data/` directory is organized by authenticity and language:
+- `data/real/`: Contains authentic human voice samples.
+  - Subdirectories: `english/`, `hindi/`, `tamil/`, `malayalam/`, `telugu/`
+- `data/fake/`: Contains AI-generated or manipulated voice samples.
+  - Subdirectories: `english/`, `hindi/`, `tamil/`, `malayalam/`, `telugu/`

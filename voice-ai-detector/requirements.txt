@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+librosa
+torch
+numpy
+python-multipart
+pytest
+requests
+pydantic
+scikit-learn
+joblib
+scipy
+python-dotenv
