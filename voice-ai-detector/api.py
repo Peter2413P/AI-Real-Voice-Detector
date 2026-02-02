@@ -88,6 +88,10 @@ def serve_index():
     return html_content
 
 # 6. ENDPOINT
+# Health Check Route (UptimeRobot hits this)
+@app.get("/")
+def home():
+    return {"status": "Alive and Kicking!"}
 @app.post("/api/voice-detection")
 def detect_voice(req: AudioRequest, x_api_key: str = Header(None)):
     
