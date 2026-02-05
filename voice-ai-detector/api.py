@@ -69,7 +69,11 @@ def extract_features_v2(audio_bytes):
 # -----------------------
 @app.get("/")
 def home():
-    return {"status": "Alive and Kicking!"}
+    return {"status": "ok"} 
+
+@app.get("/health")
+def health():
+    return {"status": "Alive and Kicking!""}
 
 
 # -----------------------
