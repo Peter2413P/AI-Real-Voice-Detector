@@ -73,7 +73,7 @@ def home():
 
 @app.get("/health")
 def health():
-    return {"status": "Alive and Kicking!""}
+    return {"status": "Alive and Kicking!"}
 
 
 # -----------------------
