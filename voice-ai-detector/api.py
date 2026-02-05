@@ -67,13 +67,14 @@ def extract_features_v2(audio_bytes):
 # -----------------------
 # HEALTH ROUTE (UptimeRobot)
 # -----------------------
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def home():
-    return {"status": "ok"} 
-
-@app.get("/health")
-def health():
     return {"status": "Alive and Kicking!"}
+
+@app.api_route("/health", methods=["GET", "HEAD"])
+def health():
+    return {"status": "ok"}
+
 
 
 # -----------------------
